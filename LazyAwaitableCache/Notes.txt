@@ -1,0 +1,16 @@
+﻿Test behaviour under load
+Test AutoResetOnExceptionFeature.
+
+Features:
+Reload cache in background, before expiration (refresh cache periodically)
+Enable AwaitCacheItemStrategy to configure Await with continueOnCapturedContext flag (maybe as parameter in ctor)
+
+Decisions:
+ContinueOnCapturedContext is a global setting that is set only once.
+
+Problems:
+OnItemAdd is also fired when GetOrCreateItem is invoked with an already existing key
+So that the already existing item is returned.
+
+Done:
+Event ItemAdd is maybe (i'm more sure than not) not fired asynchronously -> fixed
