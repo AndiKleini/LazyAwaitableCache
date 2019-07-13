@@ -15,7 +15,7 @@ You can encapsulate the creation of an item in the Cache by an asynchronous fact
 The following example reads the data for the string from a file, which is an IO operation typically implemented in asynchronous fashion. With GetOrCreate one needs not to take particualt care in concurrent scenarios. When multiple threads try to put an item under the same key to the dictionary, only one will make the race. All other clients will get the result of the winning thread.
 
 ```C#
-var yieldItem = await instanceUnderTest.GetOrCreateItem(
+var yieldItem = await myCacheInstance.GetOrCreateItem(
                 key,
                 async () => await File.ReadAllTextAsync("C:\thisIsaFile.txt"));
 ```
@@ -23,9 +23,14 @@ var yieldItem = await instanceUnderTest.GetOrCreateItem(
 It is also possible to overwrite the default expiration time of a cacheitem with encache operation.
 
 ```C#
-var yieldItem = await instanceUnderTest.GetOrCreateItem(
+var yieldItem = await myCacheInstance.GetOrCreateItem(
                 key,
                 async () => await File.ReadAllTextAsync("C:\thisIsaFile.txt"),
                 TimeSpan.FromSeconds(4));
+```
+
+## Read from cache
+````C#
+string encachedSubsequently = await myCacheInstance.GetItem(key);
 ```
 
