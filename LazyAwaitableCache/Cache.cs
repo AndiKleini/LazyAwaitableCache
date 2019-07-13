@@ -26,20 +26,26 @@ namespace LazyAwaitableCache
         /// <param name="resetOnException">When true, exceptions, raised by the value factories,
         /// are cached and returned on subsequent calls with the same key. Otherwise false. </param>
         public Cache(TimeSpan expiresAfterOnDefault) : 
-            this(new AwaitCacheItemSimple<TCacheItem>(), expiresAfterOnDefault) { }
+            this(AwaitCacheItemStrategyType.AwaitAndCachEachFactoryResult, expiresAfterOnDefault) { }
 
         /// <summary>
         /// Initializes a new instance of the Cache class.
         /// </summary>
-        /// <param name="resetOnException">When true, exceptions, raised by the value factories,
-        /// are cached and returned on subsequent calls with the same key. Otherwise false. </param>
+        /// <param name="awaitingStrategy">Specifies the strategy applied by awaiting cache item.</param>
         public Cache(
-            IAwaitCacheItemStrategy<TCacheItem> awaitingStrategy,
+            AwaitCacheItemStrategyType awaitingStrategy,
             TimeSpan expiresAfterOnDefault)
         {
             this.expiresAfterOnDefault = expiresAfterOnDefault;
             this.cache = new ConcurrentDictionary<string, LazyAwaitableCacheItem<TCacheItem>>();
-            this.awaitingStrategy = awaitingStrategy;
+            if (awaitingStrategy == AwaitCacheItemStrategyType.AwaitAndCacheOnlyOnFlawlessExecution)
+            {
+                this.awaitingStrategy = new AwaitCacheItemSimpleAndResetOnException<TCacheItem>();
+            }
+            else
+            {
+                this.awaitingStrategy = new AwaitCacheItemSimple<TCacheItem>();
+            }
             this.ItemAdd += (sender, args) => { Task.Delay(args.Expires).ContinueWith((result) => this.TryRemove(args.Key)); };
         }
 

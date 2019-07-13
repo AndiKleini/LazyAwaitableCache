@@ -22,7 +22,7 @@ namespace LazyAwaitableCache.IntegrationTests
         public async Task GetItem_FactoryThrows_ExceptionPropagatedAndItemReset()
         {
             Cache<string> cache = new Cache<string>(
-                new AwaitCacheItemSimpleAndResetOnException<string>(),
+                AwaitCacheItemStrategyType.AwaitAndCacheOnlyOnFlawlessExecution,
                 TimeSpan.FromSeconds(10));
             string key = "key";
             Exception firstException = new Exception(),
