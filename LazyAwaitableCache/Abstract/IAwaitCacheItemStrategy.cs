@@ -2,7 +2,7 @@
 
 namespace LazyAwaitableCache.Abstract
 {
-    public interface IAwaitCacheItemStrategy<TCacheItem>
+    internal interface IAwaitCacheItemStrategy<TCacheItem>
     {
         Task<TCacheItem> AwaitCacheItem(LazyAwaitableCacheItem<TCacheItem> itemToAwait);
     }
