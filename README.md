@@ -16,7 +16,7 @@ The following example reads the data for the string from a file, which is an IO 
 
 ```C#
 var yieldItem = await myCacheInstance.GetOrCreateItem(
-                key,
+                "thisIsAKey",
                 async () => await File.ReadAllTextAsync("C:\thisIsaFile.txt"));
 ```
 
@@ -24,13 +24,14 @@ It is also possible to overwrite the default expiration time of a cacheitem with
 
 ```C#
 var yieldItem = await myCacheInstance.GetOrCreateItem(
-                key,
+                "thisIsAKey",
                 async () => await File.ReadAllTextAsync("C:\thisIsaFile.txt"),
                 TimeSpan.FromSeconds(4));
 ```
 
 ## Read from cache
-````C#
-string encachedSubsequently = await myCacheInstance.GetItem(key);
+Passing an items key to operation GetItem, emits the item from the cache.
+```C#
+string encachedSubsequently = await myCacheInstance.GetItem("thisIsAKey");
 ```
 
