@@ -29,6 +29,9 @@ var yieldItem = await myCacheInstance.GetOrCreateItem(
                 TimeSpan.FromSeconds(4));
 ```
 
+If you simply want to set an item to the cache you can use:
+//TODO insert code here
+
 ## Read from cache
 Passing an items key to operation GetItem, emits the item from the cache.
 ```C#
