@@ -29,8 +29,14 @@ var yieldItem = await myCacheInstance.GetOrCreateItem(
                 TimeSpan.FromSeconds(4));
 ```
 
-If you simply want to set an item to the cache you can use:
-//TODO insert code here
+If you want to set an item straight forward into the cache you can use GetItem operation.
+
+```C#
+bool setItemResult = await myCacheInstance.SetItem(
+                  "thisIsAKey",
+                  async () => await File.ReadAllTextAsync("C:\thisIsaFile.txt"),
+                  TimeSpan.FromSeconds(4));
+```
 
 ## Read from cache
 Passing an items key to operation GetItem, emits the item from the cache.
