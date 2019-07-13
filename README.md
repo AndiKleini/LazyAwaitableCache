@@ -6,16 +6,18 @@ created/materialized objects, proper async factory operations are put into the c
 Instances of the cache are created via constructor. The example below creates an instance whose items will per default reside for 5 seconds within the cache. 
 ```C#
 var defaultExpirationOf5Seconds = TimeSpan.FromMilliseconds(5000);
-var myCacheInstance = new Cache<TCacheItem>(defaultExpirationOf5Seconds)
+var myCacheInstance = new Cache<string>(defaultExpirationOf5Seconds)
 ```
 
 ## Encache items
-You can encapsulate the creation of an item in the Cache by an asynchronous factory operation. Instead of putting the factory result to the cache, one can simply store corresponding factory.
+You can encapsulate the creation of an item in the Cache by an asynchronous factory operation. Instead of putting the factory result to the cache, one can simply store corresponding factory method. The factory will be evaluated when a client requests/awaits the item from the cache. The operation is threadsafe, so that even when accessed concurrently by different threads, factory operation is only called once.
+
+The following example reads the data for the string from a file, which is an IO operation typically implemented in asynchronous fashion.
 
 ```C#
-var yieldItem = await instanceUnderTest.GetOrCreateItem(\r\n
-                  "thisIsAKey",
-                  () => /*this can be an expensive asynchronous IO operation*/ Task.FromResult(new object()));
+var yieldItem = await instanceUnderTest.GetOrCreateItem(
+                key,
+                async () => await File.ReadAllTextAsync("C:\thisIsaFile.txt"));
 ```
 
 
