@@ -20,4 +20,12 @@ var yieldItem = await instanceUnderTest.GetOrCreateItem(
                 async () => await File.ReadAllTextAsync("C:\thisIsaFile.txt"));
 ```
 
+It is also possible to overwrite the default expiration time of a cacheitem with encache operation.
+
+```C#
+var yieldItem = await instanceUnderTest.GetOrCreateItem(
+                key,
+                async () => await File.ReadAllTextAsync("C:\thisIsaFile.txt"),
+                TimeSpan.FromSeconds(4));
+```
 
