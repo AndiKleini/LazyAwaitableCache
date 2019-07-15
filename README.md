@@ -74,7 +74,9 @@ Cache<string> cache = new Cache<string>(
 
 ## Roadmap
 Planned extensions are:
-1. Supporting different strategies for item expiration. By know for each item a delayed task is launched, whose expiration triggers removement of item.
+1. Create a nuget package.
+2. Supporting different strategies for item expiration. By know for each item a delayed task is launched, whose expiration triggers removement of item.
+
 Let me know what could be helpful for you and I will give my best to adapt roadmap properly.
 
 ## Contribution
