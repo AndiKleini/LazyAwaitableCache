@@ -58,5 +58,11 @@ bool tryRemoveResult = cache.TryRemove("thisIsAKey");
 ## Deal with exceptions in factories
 It could always somehow happen that you factory operations raise an exception when those are awaited. The cache can handle this in several ways.
 ### Rethrow and cache exception produced by factory
-Aligned to Lazy value factory pattern a raised exception can be cached by and delivered to each subsequently requesting client. If you want to cache the exception as result form the factory until the cache item expires, you can 
+Aligned to Lazy value factory pattern a raised exception can be cached by and delivered to each subsequently requesting client. If you want to cache the exception as result form the factory until the cache item expires, you can use enum value AwaitCacheItemStrategyType.AwaitAndCachEachFactoryResult at construction.
+```C#
+Cache<string> cache = new Cache<string>(
+                AwaitCacheItemStrategyType.AwaitAndCacheOnlyOnFlawlessExecution,
+                TimeSpan.FromSeconds(10));
+```
+##
 
