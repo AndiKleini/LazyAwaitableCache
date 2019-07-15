@@ -63,7 +63,7 @@ Aligned to Lazy value factory pattern a raised exception can be cached by and de
 Cache<string> cache = new Cache<string>(
                 AwaitCacheItemStrategyType.AwaitAndCachEachFactoryResult,
                 TimeSpan.FromSeconds(10));
-```AwaitAndCacheOnlyOnFlawlessExecution
+```
 ### Rethrow but don't cache exception produced by factory
 In some cases you don't want to cache yield exceptions. Instead it could make more sense to retry factory method and caching its result only in case of flawless execution. For this purpose you can create cache instance per default or passing enum value AwaitCacheItemStrategyType.AwaitAndCacheOnlyOnFlawlessExecution to constructor.
 ```C#
