@@ -1,6 +1,6 @@
 # LazyAwaitableCache
 Contains a simple implementation of a lazy .Net Core compatible cache for awaitable cache items. Instead of already 
-created/materialized objects, proper async factory operations are put into the cache. Those are awaited by subsequenty reads from the cache. The cache itself is build upon elements in System.Collections.Concurrent (I'm using ConcurrentDictionary), System.Threading.Tasks (the lovely TPL) and Lazy value factory. Putting those powerful capabilities in combination, leads to a threadsafe lock free implementation.
+created/materialized objects, proper async factory operations are put into the cache. Those are awaited by subsequenty reads from the cache. The cache itself is build upon elements in System.Collections.Concurrent (I am using ConcurrentDictionary), System.Threading.Tasks (the lovely TPL) and Lazy value factory. Putting those powerful capabilities in combination, leads to a threadsafe lock free implementation.
 
 ## Create the cache instance
 Instances of the cache are created via constructor. The example below creates an instance whose items will per default reside for 5 seconds within the cache. 
