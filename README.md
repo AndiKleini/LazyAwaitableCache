@@ -70,5 +70,17 @@ In some cases you don't want to cache yield exceptions. Instead it could make mo
 Cache<string> cache = new Cache<string>(
                 AwaitCacheItemStrategyType.AwaitAndCacheOnlyOnFlawlessExecution,
                 TimeSpan.FromSeconds(10));
-```AwaitAndCacheOnlyOnFlawlessExecution
+```
+
+## Roadmap
+Planned extensions are:
+1. Supporting different strategies for item expiration. By know for each item a delayed task is launched, whose expiration triggers removement of item.
+Let me know what could be helpful for you and I will give my best to adapt roadmap properly.
+
+## Contribution
+If you have an ideas or needs for changed, don't hesitate to contact me. I will also handle you pull requests.
+
+## Contact
+If you need anything (questions, ideas, ...) please contact me under Andi.Kleinbichler@gmail.com.
+
 
