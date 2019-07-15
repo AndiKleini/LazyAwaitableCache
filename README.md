@@ -10,7 +10,7 @@ var myCacheInstance = new Cache<string>(defaultExpirationOf5Seconds)
 ```
 
 ## Encache items
-You can encapsulate the creation of an item in the Cache by an asynchronous factory operation. Instead of putting the factory result to the cache, one can simply store corresponding factory method. The factory will be evaluated when a client requests/awaits the item from the cache. The operation is threadsafe, so that even when accessed concurrent by different threads, factory operation is only called once.
+You can encapsulate the creation of an item in the Cache by an asynchronous factory operation. Instead of putting the factory result to the cache, one can simply store corresponding factory method. The factory evaluates when a client requests/awaits the item from the cache. The operation is threadsafe, so that even when accessed concurrent by different threads, factory operation is only called once.
 
 The following example reads the data for the string from a file, which is an IO operation typically implemented in asynchronous fashion. With GetOrCreate one needs not to take particualt care in concurrent scenarios. When multiple threads try to put an item under the same key to the dictionary, only one will make the race. All other clients will get the result of the winning thread.
 
