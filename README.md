@@ -45,7 +45,7 @@ string encachedSubsequently = await myCacheInstance.GetItem("thisIsAKey");
 ```
 
 ## Remove item from cache
-For removing items from cache, a TryRemove operation is in place. It emits a flag indicating whether the item was removed or not. If and ony if returning true, a reference to the item can be fetched by an out parameter. In the latter case, the item already expired and the reference of the item points to the default instance of the cacheitem value (e.g. null, 0, ...).
+For removing items from cache, a TryRemove operation is in place. It emits a flag indicating whether the item was removed or not. If and ony if returning true, a reference to the item can be fetched by an out parameter. In the latter case, the item already expired and the reference of the item points to the default instance of the cacheitem value (e.g. null, 0...).
 ```C#
 LazyAwaitableCacheItem<string> removedInstance = null;
 bool tryRemoveResult = cache.TryRemove("thisIsAKey", out removedInstance);
@@ -83,6 +83,6 @@ Let me know what could be helpful for you and I will give my best to adapt roadm
 If you have an ideas or needs for changed, don't hesitate to contact me. I will also handle you pull requests.
 
 ## Contact
-If you need anything (questions, ideas, ...) please contact me under Andi.Kleinbichler@gmail.com.
+If you need anything (questions, ideas...) please contact me under Andi.Kleinbichler@gmail.com.
 
 
