@@ -39,18 +39,18 @@ bool setItemResult = await myCacheInstance.SetItem(
 ```
 
 ## Read from cache
-Passing an items key to operation GetItem, emits the item from the cache.
+Passing an items key to operation SetItem, emits the item from the cache.
 ```C#
 string encachedSubsequently = await myCacheInstance.GetItem("thisIsAKey");
 ```
 
 ## Remove item from cache
-For removing items from cache, a TryRemove operation is in place. It emits a flag indicating whether the item was removed or not. If and ony if returning true, a reference to the item can be fetched by an out parameter. In the latter case, the item already expired and the reference of the item points to the default instance of the cacheitem value (e.g. null, 0...).
+For removing items from cache, a TryRemove operation is in place. It emits a flag indicating whether the item could be removed or not. If and ony if returning true, a reference to the item can be fetched by an out parameter. In the latter case, the item already expired and the reference of the item points to the default instance of the cacheitem value (e.g. null, 0...).
 ```C#
 LazyAwaitableCacheItem<string> removedInstance = null;
 bool tryRemoveResult = cache.TryRemove("thisIsAKey", out removedInstance);
 ```
-If you don't need reference to the removed item, you can simply use a proper overload without the output parameter.
+If you don't need a reference to the removed item, you can simply use a proper overload without the output parameter.
 ```C#
 bool tryRemoveResult = cache.TryRemove("thisIsAKey");
 ```
